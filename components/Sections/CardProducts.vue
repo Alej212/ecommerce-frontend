@@ -1,26 +1,34 @@
 <template>
-    <div v-for="i in numbers" :key="i.index" class="product">
-        <div class="product_img"></div>
+    <div v-for="product in data" :key="product.id" class="product">
+        <img :src="product.image" alt="Product image" class="product_img">
         <div class="product_info">
             <div class="product_contentinfo">
-                <p class="product_title">Air Jordan 3 Retro</p>
+                <p class="product_title">{{ product.title }}</p>
                 <p class="product_category">Men's Shoes</p>
             </div>
-            <p class="product_price">$200</p>
+            <p class="product_price">${{ product.price }}</p>
         </div>
-        {{ i }}
     </div>
 </template>
 
 <script setup>
-const numbers = [1,2,3,4,5,6];
+
+const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-django.onrender.com')
+
+console.log(data)
+
+
+// function formatImgUrl(imgUrl) {
+//     return imgUrl.replace('https://ecommerce-backend-django.onrender.com/', '');
+// }
+
 </script>
 
 <style scoped lang="scss">
 .product {
     display: flex;
     width: 18.75rem;
-    height: 20rem;
+    height: fit-content;
     padding: 0.625rem;
     flex-direction: column;
     align-items: flex-start;
@@ -30,12 +38,12 @@ const numbers = [1,2,3,4,5,6];
     &_img {
         display: flex;
         height: 13.625rem;
-        padding: 0.625rem;
+        //padding: 0.625rem;
         align-items: flex-start;
         gap: 0.625rem;
         flex-shrink: 0;
         align-self: stretch;
-        background-color: #FFF;
+        //background-color: lightgray 50% / cover no-repeat;
     }
     &_info {
         display: flex;
