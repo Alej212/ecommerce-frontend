@@ -24,20 +24,19 @@ const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-d
     padding: 0.625rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.25rem;
+    gap: 1.875rem;
     border-radius: 0.3125rem;
     background: #FFF;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.05);
+    display: flex;
 
     &_img {
         display: flex;
         height: 13.625rem;
-        //padding: 0.625rem;
         align-items: flex-start;
         gap: 0.625rem;
         flex-shrink: 0;
         align-self: stretch;
-        //background-color: lightgray 50% / cover no-repeat;
         
     }
     &_info {
@@ -47,12 +46,14 @@ const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-d
         align-items: flex-start;
         gap: 0.625rem;
         align-self: stretch;
+        display: flex;
     }
     &_contentinfo {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.3125rem;
+        align-self: stretch;
     }
     &_title {
         color: #000;
@@ -61,6 +62,7 @@ const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-d
         font-style: normal;
         font-weight: 600;
         line-height: normal;
+        align-self: stretch;
     }
     &_category {
         color: #000;
@@ -81,5 +83,15 @@ const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-d
 }
 .product:hover {
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 800px) {
+    .product {
+        width: 12.5rem;
+
+        &_img {
+            height: 12.5rem;
+        }
+    }
 }
 </style>
