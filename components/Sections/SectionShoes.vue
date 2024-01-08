@@ -25,11 +25,12 @@
 <style scoped lang="scss">
 .shoes {
     display: flex;
-    padding: 4.375rem 0.625rem 1.875rem 0.625rem;
+    padding: 4.375rem 0.625rem 1.875rem 1.5625rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.875rem;
     align-self: stretch;
+
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
     overflow: hidden;
 

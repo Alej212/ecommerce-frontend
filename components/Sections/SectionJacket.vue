@@ -25,7 +25,7 @@
 <style scoped lang="scss">
 .jacket {
     display: flex;
-    padding: 4.375rem 0.625rem 1.875rem 0.625rem;
+    padding: 4.375rem 0.625rem 1.875rem 1.5625rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.875rem;

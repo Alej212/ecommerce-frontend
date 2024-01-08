@@ -39,7 +39,7 @@
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
-    background-color: #000;
+    background-color: #081413;
 
     &_icon {
         width: 1.875rem;
