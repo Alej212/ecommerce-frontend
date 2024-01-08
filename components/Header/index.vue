@@ -74,4 +74,10 @@
         color: #fff;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .header_ul {
+        display: none;
+    }
+}
 </style>

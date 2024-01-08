@@ -15,8 +15,6 @@
 
 const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-django.onrender.com')
 
-console.log(data)
-
 </script>
 
 <style scoped lang="scss">
