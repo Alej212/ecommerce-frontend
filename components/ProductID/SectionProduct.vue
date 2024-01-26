@@ -64,7 +64,6 @@ const route = useRoute()
 const product = ref({})
 
 const id = route.params.id
-
 if (route.params.product === 'shoes') {
 await productStore.fetchShoesDetail(id)
 product.value = productStore.$state.shoesDetail
