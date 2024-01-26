@@ -11,5 +11,5 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: ['nuxt-icon', 'nuxt-swiper'],
+  modules: ['nuxt-icon', 'nuxt-swiper', '@pinia/nuxt'],
 })

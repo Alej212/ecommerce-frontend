@@ -1,5 +1,5 @@
 <template>
-    <ProductIDSectionProduct></ProductIDSectionProduct>
+    <ProductID></ProductID>
 </template>
 
 <script setup></script>

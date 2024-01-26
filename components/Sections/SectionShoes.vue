@@ -9,12 +9,13 @@
             </ul>
         </div>
         <div class="shoes_galery">
-            <SectionsCardProducts></SectionsCardProducts>
+            <SectionsCardProducts category="shoes"></SectionsCardProducts>
         </div>
         <div class="shoes_contentbutton">
             <div class="shoes_button">
-                <p class="shoes_showmore">Show more</p>
-                <icon name="ic:outline-arrow-drop-down" color="#000" class="shoes_icon"></icon>
+                <NuxtLink to="/products/shoes">
+                    <p class="shoes_showmore">Show more</p>
+                </NuxtLink>
             </div>
         </div>
     </section>
@@ -61,7 +62,6 @@
     }
     &_contentbutton {
         display: flex;
-        padding-right: 1.875rem;
         justify-content: flex-end;
         align-items: center;
         gap: 0.5rem;
@@ -84,6 +84,16 @@
     &_icon {
         width: 1.875rem;
         height: 1.875rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .shoes_info {
+        justify-content: none;
+        flex-flow: column nowrap;
+    }
+    .shoes_categories {
+        padding-left: 0;
     }
 }
 </style>

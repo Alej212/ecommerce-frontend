@@ -1,7 +1,7 @@
 <template>
     <section class="sweter">
         <div class="sweter_info">
-            <h2>Sweter</h2>
+            <h2>Sweater</h2>
             <ul class="sweter_categories">
                 <li class="sweter_category">Men</li>
                 <li class="sweter_category">Women</li>
@@ -9,12 +9,13 @@
             </ul>
         </div>
         <div class="sweter_galery">
-            <SectionsCardProducts></SectionsCardProducts>
+            <SectionsCardProducts category="sweaters"></SectionsCardProducts>
         </div>
         <div class="sweter_contentbutton">
             <div class="sweter_button">
-                <p class="sweter_showmore">Show more</p>
-                <icon name="ic:outline-arrow-drop-down" color="#000" class="sweter_icon"></icon>
+                <NuxtLink to="products/sweaters">
+                    <p class="sweter_showmore">Show more</p>
+                </NuxtLink>
             </div>
         </div>
     </section>
@@ -60,7 +61,6 @@
     }
     &_contentbutton {
         display: flex;
-        padding-right: 1.875rem;
         justify-content: flex-end;
         align-items: center;
         gap: 0.5rem;
@@ -83,6 +83,17 @@
     &_icon {
         width: 1.875rem;
         height: 1.875rem;
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    .sweter_info {
+        justify-content: none;
+        flex-flow: column nowrap;
+    }
+    .sweter_categories {
+        padding-left: 0;
     }
 }
 </style>

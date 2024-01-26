@@ -1,13 +1,40 @@
 <template>
-    <div class="welcome"></div>
+    <Swiper :modules="[SwiperAutoplay, SwiperEffectCreative]" :slides-per-view="1" :loop="true" :effect="'creative'" :autoplay="{ delay: 8000, disableOnInteraction: true, }" :creative-effect="{ prev: { shadow: false, translate: ['-20%', 0, -1], }, next: { translate: ['100%', 0, 0], }, }" >
+      <SwiperSlide>
+        <div class="welcome">
+            <img src="@/assets/images/image1.png" alt="">
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="welcome">
+            <img src="@/assets/images/image2.png" alt="">
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="welcome">
+            <img src="@/assets/images/image3.png" alt="">
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="welcome">
+            <img src="@/assets/images/image4.png" alt="">
+        </div>
+      </SwiperSlide>
+    </Swiper>
 </template>
-
+  
 <script setup></script>
 
 <style scoped lang="scss">
 .welcome {
-    height: 41.5625rem;
-    align-self: stretch;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.39) 0%, rgba(0, 0, 0, 0.39) 100%), url(''), lightgray 50% / cover no-repeat;
+    height: 40rem;
+    width: 100%;
+    display: flex;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 </style>

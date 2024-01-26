@@ -1,26 +1,63 @@
 <template>
-    <div v-for="product in data" :key="product.id" class="product">
-        <img :src="product.image" alt="Product image" class="product_img">
-        <div class="product_info">
-            <div class="product_contentinfo">
-                <p class="product_title">{{ product.title }}</p>
-                <p class="product_category">Men's Shoes</p>
-            </div>
-            <p class="product_price">${{ product.price }}</p>
+        <div v-for="shoe in products" :key="shoe.id" class="product">
+            <NuxtLink :to="`/products-${shoe.type_product}/${shoe.custom_id}`">
+                <img :src="shoe.image" alt="Product image" class="product_img">
+                <div class="product_info">
+                    <div class="product_contentinfo">
+                        <p class="product_title">{{ shoe.title }}</p>
+                        <p class="product_category">{{ shoe.category }}</p>
+                    </div>
+                    <p class="product_price">${{ shoe.price }}</p>
+                </div>
+            </NuxtLink>
         </div>
-    </div>
 </template>
 
 <script setup>
+import { useProductStore } from '~/stores/useProductStore'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
-const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-django.onrender.com')
+const route = useRoute()
+const store = useProductStore()
+
+await store.fetchShoes()
+await store.fetchSweaters()
+await store.fetchJackets()
+await store.fetchPants()
+
+const shoes = store.shoes
+const sweaters = store.sweaters
+const jackets = store.jackets
+const pants = store.pants
+
+
+const props = defineProps({
+  category: String
+})
+
+let products
+switch (props.category) {
+  case 'shoes':
+    products = shoes
+    break
+  case 'sweaters':
+    products = sweaters
+    break
+  case 'jackets':
+    products = jackets
+    break
+  case 'pants':
+    products = pants
+    break
+}
 
 </script>
 
 <style scoped lang="scss">
 .product {
     display: flex;
-    width: 15.625rem;
+    width: 11rem;
     padding: 0.625rem;
     flex-direction: column;
     align-items: flex-start;
@@ -31,13 +68,8 @@ const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-d
     display: flex;
 
     &_img {
-        display: flex;
-        height: 13.625rem;
-        align-items: flex-start;
-        gap: 0.625rem;
-        flex-shrink: 0;
-        align-self: stretch;
-        
+        height: 13rem;
+        width: 100%;
     }
     &_info {
         display: flex;
@@ -87,11 +119,37 @@ const { data, error, pending } = await useLazyFetch('https://ecommerce-backend-d
 
 @media screen and (max-width: 800px) {
     .product {
-        width: 12.5rem;
+        width: 8rem;
 
         &_img {
-            height: 12.5rem;
+            height: 9rem;
+        }
+        &_title {
+            color: #000;
+            font-family: 'InterBold';
+            font-size: .9rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            align-self: stretch;
+        }
+        &_category {
+            color: #000;
+            font-family: 'InterLight';
+            font-size: .8rem;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+        }
+        &_price {
+            color: #000;
+            font-family: 'InterBold';
+            font-size: .9rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
         }
     }
+
 }
 </style>

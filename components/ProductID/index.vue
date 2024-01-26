@@ -1,6 +1,7 @@
 <template>
-    <h2>pants all</h2>
-    <SectionRoutes></SectionRoutes>
+    <div>
+        <ProductIDSectionProduct></ProductIDSectionProduct>
+    </div>
 </template>
 
 <script setup></script>

@@ -9,12 +9,11 @@
             </ul>
         </div>
         <div class="shoes_galery">
-            <SectionsCardProducts></SectionsCardProducts>
+            <SectionsCardProducts category="jackets"></SectionsCardProducts>
         </div>
         <div class="shoes_contentbutton">
             <div class="shoes_button">
                 <p class="shoes_showmore">Show more</p>
-                <icon name="ic:outline-arrow-drop-down" color="#000" class="shoes_icon"></icon>
             </div>
         </div>
     </section>
@@ -35,7 +34,6 @@
 
     &_info {
         display: flex;
-        padding-right: 1.875rem;
         justify-content: space-between;
         align-items: flex-start;
         align-self: stretch;
@@ -60,7 +58,6 @@
     }
     &_contentbutton {
         display: flex;
-        padding-right: 1.875rem;
         justify-content: flex-end;
         align-items: center;
         gap: 0.5rem;
@@ -71,6 +68,7 @@
         justify-content: flex-end;
         align-items: center;
         gap: 0.5rem;
+        padding-right: 0.625rem;
     }
     &_showmore {
         color: #000;
@@ -83,6 +81,28 @@
     &_icon {
         width: 1.875rem;
         height: 1.875rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    h2 {
+        font-size: 30px;
+    }
+    .shoes_info {
+        display: flex;
+        padding-right: 1.875rem;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-self: stretch;
+        flex-flow: column nowrap;
+
+    }
+    .shoes_categories {
+        display: flex;
+        margin-top: 1.7rem;
+        padding: 0;
+        align-items: flex-start;
+        gap: 0.625rem;
     }
 }
 </style>

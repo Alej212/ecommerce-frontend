@@ -8,19 +8,56 @@
                 <li class="jacket_category">Kids</li>
             </ul>
         </div>
-        <div class="jacket_galery">
-            <SectionsCardProducts></SectionsCardProducts>
+        <div class="jacket_galery" ref="slider">
+            <SectionsCardProducts category="jackets"></SectionsCardProducts>
         </div>
         <div class="jacket_contentbutton">
             <div class="jacket_button">
-                <p class="jacket_showmore">Show more</p>
-                <icon name="ic:outline-arrow-drop-down" color="#000" class="jacket_icon"></icon>
+                <NuxtLink to="products/jackets">
+                    <p class="jacket_showmore">Show more</p>
+                </NuxtLink>
             </div>
         </div>
     </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref, onMounted } from 'vue'
+
+let slider = ref(null)
+let isDown = false
+let startX
+let scrollLeft
+
+onMounted(() => {
+  const sliderElement = slider.value
+
+  sliderElement.addEventListener('mousedown', (e) => {
+    isDown = true
+    sliderElement.classList.add('active')
+    startX = e.pageX - sliderElement.offsetLeft
+    scrollLeft = sliderElement.scrollLeft
+  })
+
+  sliderElement.addEventListener('mouseleave', () => {
+    isDown = false
+    sliderElement.classList.remove('active')
+  })
+
+  sliderElement.addEventListener('mouseup', () => {
+    isDown = false
+    sliderElement.classList.remove('active')
+  })
+
+  sliderElement.addEventListener('mousemove', (e) => {
+    if (!isDown) return
+    e.preventDefault()
+    const x = e.pageX - sliderElement.offsetLeft
+    const walk = (x - startX) * 3
+    sliderElement.scrollLeft = scrollLeft - walk
+  })
+})
+</script>
 
 <style scoped lang="scss">
 .jacket {
@@ -60,7 +97,6 @@
     }
     &_contentbutton {
         display: flex;
-        padding-right: 1.875rem;
         justify-content: flex-end;
         align-items: center;
         gap: 0.5rem;
@@ -83,6 +119,17 @@
     &_icon {
         width: 1.875rem;
         height: 1.875rem;
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    .jacket_info {
+        justify-content: none;
+        flex-flow: column nowrap;
+    }
+    .jacket_categories {
+        padding-left: 0;
     }
 }
 </style>
