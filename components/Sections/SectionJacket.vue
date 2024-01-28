@@ -13,7 +13,7 @@
         </div>
         <div class="jacket_contentbutton">
             <div class="jacket_button">
-                <NuxtLink to="products/jackets">
+                <NuxtLink to="products-jackets">
                     <p class="jacket_showmore">Show more</p>
                 </NuxtLink>
             </div>

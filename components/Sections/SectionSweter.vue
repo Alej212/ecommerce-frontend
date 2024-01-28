@@ -13,7 +13,7 @@
         </div>
         <div class="sweter_contentbutton">
             <div class="sweter_button">
-                <NuxtLink to="products/sweaters">
+                <NuxtLink to="/products-sweaters">
                     <p class="sweter_showmore">Show more</p>
                 </NuxtLink>
             </div>

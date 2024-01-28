@@ -1,25 +1,29 @@
 <template>
-        <div v-for="shoe in products" :key="shoe.id" class="product">
-            <NuxtLink :to="`/products-${shoe.type_product}/${shoe.custom_id}`">
-                <img :src="shoe.image" alt="Product image" class="product_img">
-                <div class="product_info">
-                    <div class="product_contentinfo">
-                        <p class="product_title">{{ shoe.title }}</p>
-                        <p class="product_category">{{ shoe.category }}</p>
-                    </div>
-                    <p class="product_price">${{ shoe.price }}</p>
+        <div v-for="product in products" :key="product.custom_id" class="product" @click="navigateToProduct(product.type_product, product.custom_id)" >
+            <img :src="product.image" alt="Product image" class="product_img">
+            <div class="product_info">
+                <div class="product_contentinfo">
+                    <p class="product_title">{{ product.title }}</p>
+                    <p class="product_category">{{ product.category }}</p>
                 </div>
-            </NuxtLink>
+                <p class="product_price">${{ product.price }}</p>
+            </div>
         </div>
 </template>
 
 <script setup>
 import { useProductStore } from '~/stores/useProductStore'
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 const store = useProductStore()
+
+const navigateToProduct = (type_product, custom_id) => {
+  router.push(`/products-${type_product}/${custom_id}`)
+}
+
 
 await store.fetchShoes()
 await store.fetchSweaters()

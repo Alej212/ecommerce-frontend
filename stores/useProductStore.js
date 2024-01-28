@@ -7,10 +7,7 @@ export const useProductStore = defineStore('products', {
     sweaters: [],
     jackets: [],
     pants: [],
-    shoesDetail: {},
-    sweatersDetail: {},
-    jacketsDetail: {},
-    pantsDetail: {},
+    productDetail: {},
   }),
   actions: {
     async fetchShoes() {
@@ -45,37 +42,45 @@ export const useProductStore = defineStore('products', {
         console.error('Error fetching pants:', error)
       }
     },
-    async fetchShoesDetail(custom_id) {
+    // async fetchShoesDetail(custom_id) {
+    //   try {
+    //     const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/shoes/${custom_id}`)
+    //     this.shoesDetail = response.data
+    //   } catch (error) {
+    //     console.error('Error fetching shoes:', error)
+    //   }
+    // },
+    // async fetchSweatersDetail(custom_id) {
+    //   try {
+    //     const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/sweaters/${custom_id}`)
+    //     this.sweatersDetail = response.data
+    //   } catch (error) {
+    //     console.error('Error fetching sweaters:', error)
+    //   }
+    // },
+    // async fetchJacketsDetail(custom_id) {
+    //   try {
+    //     const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/jackets/${custom_id}`)
+    //     this.jacketsDetail = response.data
+    //   } catch (error) {
+    //     console.error('Error fetching jackets:', error)
+    //   }
+    // },
+    // async fetchPantsDetail(custom_id) {
+    //   try {
+    //     const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/pants/${custom_id}`)
+    //     this.pantsDetail = response.data
+    //   } catch (error) {
+    //     console.error('Error fetching pants:', error)
+    //   }
+    // },
+    async fetchProductDetail(type, custom_id) {
       try {
-        const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/shoes/${custom_id}`)
-        this.shoesDetail = response.data
+        const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/${type}/${custom_id}`)
+        this.productDetail = response.data
       } catch (error) {
-        console.error('Error fetching shoes:', error)
+        console.error(`Error fetching ${type}:`, error)
       }
     },
-    async fetchSweatersDetail(custom_id) {
-      try {
-        const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/sweaters/${custom_id}`)
-        this.sweatersDetail = response.data
-      } catch (error) {
-        console.error('Error fetching sweaters:', error)
-      }
-    },
-    async fetchJacketsDetail(custom_id) {
-      try {
-        const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/jackets/${custom_id}`)
-        this.jacketsDetail = response.data
-      } catch (error) {
-        console.error('Error fetching jackets:', error)
-      }
-    },
-    async fetchPantsDetail(custom_id) {
-      try {
-        const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/pants/${custom_id}`)
-        this.pantsDetail = response.data
-      } catch (error) {
-        console.error('Error fetching pants:', error)
-      }
-    }
   },
 })

@@ -10,15 +10,15 @@
                 </div>
             </div>
             <div class="idproduct_img">
-                <img :src="product.image" alt="" class="product_image">
+                <img :src="productDetail.image" alt="" class="product_image">
             </div>
         </div>
         <div class="idproduct_infocontent">
             <div class="idproduct_titlecontent">
-                <h3>{{ product.title }}</h3>
-                <h5>{{ product.type_product }} - {{ product.genre }}</h5>
+                <h3>{{ productDetail.title }}</h3>
+                <h5></h5>
             </div>
-            <p class="idproduct_price">{{ product.price }} $</p>
+            <p class="idproduct_price"></p>
             <div class="idproduct_moredata">
                 <div class="idproduct_moredatatext">
                     <h5>Selecciona tu talla</h5>
@@ -55,33 +55,25 @@
 </template>
 
 <script setup>
-import { useProductStore } from '~/stores/useProductStore'
-import { useRoute } from 'vue-router'
 import { ref, onMounted } from 'vue'
+import axios from 'axios'
+import { useRoute } from 'vue-router'
 
-const productStore = useProductStore()
 const route = useRoute()
-const product = ref({})
+const productDetail = ref({})
 
-const id = route.params.id
-if (route.params.product === 'shoes') {
-await productStore.fetchShoesDetail(id)
-product.value = productStore.$state.shoesDetail
-} else if (route.params.product === 'jacket') {
-await productStore.fetchJacketsDetail(id)
-product.value = productStore.$state.jacketsDetail
-} else if (route.params.product === 'sweater') {
-await productStore.fetchSweatersDetail(id)
-product.value = productStore.$state.sweatersDetail
-} else if (route.params.product === 'pants') {
-await productStore.fetchPantsDetail(id)
-product.value = productStore.$state.pantsDetail
-}
+onMounted(async () => {
+  const type = route.params.product
+  const id = route.params.id
+  console.log('Type:', type)
+  console.log('ID:', id)
+  const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/${type}/${id}`)
+  console.log('Response data:', response.data)
+  productDetail.value = response.data
+})
 
-
+console.log('Product detail:', productDetail)
 </script>
-
-
 
 <style scoped lang="scss">
 .product_image {
