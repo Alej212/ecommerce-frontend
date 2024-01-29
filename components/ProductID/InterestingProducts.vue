@@ -9,7 +9,7 @@
             </ul>
         </div>
         <div class="shoes_galery">
-            <SectionsCardProducts category="jackets"></SectionsCardProducts>
+            <SectionsCardProducts :category="products"></SectionsCardProducts>
         </div>
         <div class="shoes_contentbutton">
             <div class="shoes_button">
@@ -19,7 +19,16 @@
     </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRoute } from 'vue-router';
+import { ref } from 'vue';
+
+const route = useRoute()
+const product = route.params.product
+const products = ref(product)
+
+
+</script>
 
 <style scoped lang="scss">
 .shoes {
@@ -55,6 +64,7 @@
         display: flex;
         align-items: flex-start;
         gap: 1.25rem;
+        margin-top: 1rem;
     }
     &_contentbutton {
         display: flex;

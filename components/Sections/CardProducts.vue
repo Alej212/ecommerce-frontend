@@ -1,65 +1,76 @@
 <template>
-        <div v-for="product in products" :key="product.custom_id" class="product" @click="navigateToProduct(product.type_product, product.custom_id)" >
-            <img :src="product.image" alt="Product image" class="product_img">
-            <div class="product_info">
-                <div class="product_contentinfo">
-                    <p class="product_title">{{ product.title }}</p>
-                    <p class="product_category">{{ product.category }}</p>
-                </div>
-                <p class="product_price">${{ product.price }}</p>
+    <div v-for="product in products" :key="product.custom_id" class="product" @mouseover="hoveredProduct = product.custom_id" @mouseleave="hoveredProduct = null">
+        <img @click="navigateToProduct(product.type_product, product.custom_id)" :src="product.image" alt="Product image" class="product_img">
+        <div class="product_info">
+            <div class="product_contentinfo">
+                <p class="product_title">{{ product.title }}</p>
+                <p class="product_category">{{ product.type_product }}</p>
             </div>
+            <p class="product_price">${{ product.price }}</p>
         </div>
+    </div>
 </template>
+
+
 
 <script setup>
 import { useProductStore } from '~/stores/useProductStore'
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-const route = useRoute()
-const router = useRouter()
-const store = useProductStore()
 
 const navigateToProduct = (type_product, custom_id) => {
   router.push(`/products-${type_product}/${custom_id}`)
 }
 
+const route = useRoute()
+const router = useRouter()
+const store = useProductStore()
 
-await store.fetchShoes()
-await store.fetchSweaters()
-await store.fetchJackets()
-await store.fetchPants()
+let hoveredProduct = ref(null)
 
-const shoes = store.shoes
-const sweaters = store.sweaters
-const jackets = store.jackets
-const pants = store.pants
+const shoes = ref([])
+const sweaters = ref([])
+const jackets = ref([])
+const pants = ref([])
+const products = ref([])
 
 
 const props = defineProps({
-  category: String
+    category: String
 })
 
-let products
-switch (props.category) {
-  case 'shoes':
-    products = shoes
-    break
-  case 'sweaters':
-    products = sweaters
-    break
-  case 'jackets':
-    products = jackets
-    break
-  case 'pants':
-    products = pants
-    break
-}
 
+onMounted(async () => {
+    await store.fetchShoes()
+    shoes.value = store.$state.shoes
+    await store.fetchSweaters()
+    sweaters.value = store.$state.sweaters
+    await store.fetchJackets()
+    jackets.value = store.$state.jackets
+    await store.fetchPants()
+    pants.value = store.$state.pants
+
+    switch (props.category) {
+      case 'shoes':
+        products.value = shoes.value
+        break
+      case 'sweaters':
+        products.value = sweaters.value
+        break
+      case 'jackets':
+        products.value = jackets.value
+        break
+      case 'pants':
+        products.value = pants.value
+        break
+    }
+})
 </script>
 
 <style scoped lang="scss">
 .product {
+    position: relative;
     display: flex;
     width: 11rem;
     padding: 0.625rem;
@@ -122,38 +133,64 @@ switch (props.category) {
 }
 
 @media screen and (max-width: 800px) {
-    .product {
-        width: 8rem;
+.add_bag {
+    position: absolute;
+    background-color: hsl(152, 74%, 7%);
+    padding: .8rem .8rem;
+    top: -2rem;
+    right: -1rem;
+    z-index: 1;
+    border-radius: 7px;
+    cursor: default;
+}
 
-        &_img {
-            height: 9rem;
-        }
-        &_title {
-            color: #000;
-            font-family: 'InterBold';
-            font-size: .9rem;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-            align-self: stretch;
-        }
-        &_category {
-            color: #000;
-            font-family: 'InterLight';
-            font-size: .8rem;
-            font-style: normal;
-            font-weight: 300;
-            line-height: normal;
-        }
-        &_price {
-            color: #000;
-            font-family: 'InterBold';
-            font-size: .9rem;
-            font-style: normal;
-            font-weight: 700;
-            line-height: normal;
-        }
+.add_bag:hover {
+    position: absolute;
+    background-color:  hsl(152, 74%, 15%);
+    padding: .8rem .8rem;
+    top: -2rem;
+    right: -1rem;
+    z-index: 1;
+    border-radius: 7px;
+    cursor: default;
+}
+
+.header_icon {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.product {
+    width: 8rem;
+
+    &_img {
+        height: 9rem;
     }
+    &_title {
+        color: #000;
+        font-family: 'InterBold';
+        font-size: .9rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        align-self: stretch;
+    }
+    &_category {
+        color: #000;
+        font-family: 'InterLight';
+        font-size: .8rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
+    &_price {
+        color: #000;
+        font-family: 'InterBold';
+        font-size: .9rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+}
 
 }
 </style>

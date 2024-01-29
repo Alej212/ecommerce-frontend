@@ -2,11 +2,11 @@
     <section class="sweter">
         <div class="sweter_info">
             <h2>Sweater</h2>
-            <ul class="sweter_categories">
+            <!-- <ul class="sweter_categories">
                 <li class="sweter_category">Men</li>
                 <li class="sweter_category">Women</li>
                 <li class="sweter_category">Kids</li>
-            </ul>
+            </ul> -->
         </div>
         <div class="sweter_galery">
             <SectionsCardProducts category="sweaters"></SectionsCardProducts>
@@ -29,7 +29,7 @@
     padding: 4.375rem 0.625rem 1.875rem 1.5625rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.875rem;
+    gap: 3.5rem;
     align-self: stretch;
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
     overflow: hidden;
@@ -57,7 +57,7 @@
     &_galery {
         display: flex;
         align-items: flex-start;
-        gap: 1.25rem;
+        gap: 2.5rem;
     }
     &_contentbutton {
         display: flex;
@@ -94,6 +94,12 @@
     }
     .sweter_categories {
         padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .sweter_galery {
+        gap: 1.5rem;
     }
 }
 </style>

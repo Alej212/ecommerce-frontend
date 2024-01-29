@@ -2,11 +2,11 @@
     <section class="shoes">
         <div class="shoes_info">
             <h2>Shoes</h2>
-            <ul class="shoes_categories">
+            <!-- <ul class="shoes_categories">
                 <li class="shoes_category">Men</li>
                 <li class="shoes_category">Women</li>
                 <li class="shoes_category">Kids</li>
-            </ul>
+            </ul> -->
         </div>
         <div class="shoes_galery">
             <SectionsCardProducts category="shoes"></SectionsCardProducts>
@@ -29,7 +29,7 @@
     padding: 4.375rem 0.625rem 1.875rem 1.5625rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.875rem;
+    gap: 3.5rem;
     align-self: stretch;
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
@@ -58,7 +58,7 @@
     &_galery {
         display: flex;
         align-items: flex-start;
-        gap: 1.25rem;
+        gap: 2.5rem;
     }
     &_contentbutton {
         display: flex;
@@ -94,6 +94,12 @@
     }
     .shoes_categories {
         padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .shoes_galery {
+        gap: 1.5rem;
     }
 }
 </style>

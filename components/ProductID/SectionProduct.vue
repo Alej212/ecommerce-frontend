@@ -9,14 +9,24 @@
                     <Icon name="ant-design:stop-outlined" color="#fff" size="2rem"></Icon>
                 </div>
             </div>
-            <div class="idproduct_img">
+            <div class="idproduct_img" v-if="productDetail.image">
                 <img :src="productDetail.image" alt="" class="product_image">
+            </div>
+            <div class="idproduct_img--negativeC"  v-else>
+                <div class="idproduct_img--negative">
+                    <h3 class="h3">
+                        La información del producto esta siendo procesada si tarda demasido podrías considerar ir de nuevo a la pestaña de inicio.
+                    </h3>
+                    <NuxtLink to="/">
+                        <h5 class="h5">Volver al home</h5>
+                    </NuxtLink>
+                </div>
             </div>
         </div>
         <div class="idproduct_infocontent">
             <div class="idproduct_titlecontent">
                 <h3>{{ productDetail.title }}</h3>
-                <h5></h5>
+                <h5>{{ productDetail.genre }} - {{ productDetail.type_product }}</h5>
             </div>
             <p class="idproduct_price"></p>
             <div class="idproduct_moredata">
@@ -42,7 +52,7 @@
                 </p>
             </div>
             <ul class="idproduct_buttons">
-                <li class="idproduct_buttonadd">
+                <li class="idproduct_buttonadd" @click="store.addToBag(productDetail)">
                     Añadir a la cesta
                 </li>
                 <li class="idproduct_buttonfavorite">
@@ -56,23 +66,19 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
 import { useRoute } from 'vue-router'
+import { useProductStore } from '~/stores/useProductStore'
 
 const route = useRoute()
+const store = useProductStore()
 const productDetail = ref({})
 
 onMounted(async () => {
-  const type = route.params.product
   const id = route.params.id
-  console.log('Type:', type)
-  console.log('ID:', id)
-  const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/${type}/${id}`)
-  console.log('Response data:', response.data)
-  productDetail.value = response.data
+  const product = route.params.product
+  await store.fetchProductDetail(product, id)
+  productDetail.value = store.$state.productDetail
 })
-
-console.log('Product detail:', productDetail)
 </script>
 
 <style scoped lang="scss">
@@ -129,6 +135,33 @@ console.log('Product detail:', productDetail)
         border-radius: 0.3125rem;
         background: #E9E8E8;
         object-fit: contain;
+    }
+    &_img--negative {
+        position: absolute;
+        display: flex;
+        flex-flow: column wrap;
+        gap: 2rem;
+        background-color: #fff;
+        border-radius: 5px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 6rem 3rem;
+        text-align: center;
+        z-index: 3;
+
+        .h5 {
+            color: rgb(20, 65, 20);
+        }
+    }
+    &_img--negativeC {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        background-color: hsla(0, 0%, 0%, 0.219);
+        top: 0;
+        left: 0;
+        z-index: 2;
     }
     &_infocontent {
         display: flex;
@@ -242,7 +275,10 @@ console.log('Product detail:', productDetail)
         gap: 0.625rem;
         align-self: stretch;
         border-radius: 3.125rem;
-        background: #000;
+        background: hsl(152, 74%, 7%);
+    }
+    &_buttonadd:hover {
+        background: hsl(152, 74%, 15%);
     }
     &_buttonfavorite {
         display: flex;
@@ -317,6 +353,31 @@ console.log('Product detail:', productDetail)
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .idproduct_img--negative {
+        position: absolute;
+        width: 70%;
+        display: flex;
+        flex-flow: column wrap;
+        gap: 2rem;
+        background-color: #fff;
+        border-radius: 5px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 6rem 3rem;
+        text-align: center;
+        z-index: 3;
+
+        .h3 {
+            font-size: 1rem;
+        }
+        .h5 {
+            color: rgb(20, 65, 20);
+        }
     }
 }
 </style>

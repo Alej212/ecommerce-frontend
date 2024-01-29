@@ -68,7 +68,7 @@ let selectedGender = ref('')
 
 const productStore = useProductStore()
 
-let products = ref([]) // Define products en el ámbito global
+let products = ref([])
 
 watch([selectedGender, contentType], () => {
   switch (contentType.value) {
@@ -108,7 +108,7 @@ contentType.value = 'pants'
 <style scoped lang="scss">
 .routeproducts {
     display: flex;
-    margin-top: 3rem;
+    margin-top: 5rem;
     margin-bottom: 3rem;
     padding: 0 0.625rem;
     align-items: flex-start;
@@ -170,7 +170,7 @@ contentType.value = 'pants'
         justify-content: center;
         align-items: flex-start;
         align-content: flex-start;
-        gap: 1.25rem;
+        gap: 2.25rem;
         align-self: stretch;
         flex-wrap: wrap;
         margin-top: 3rem;

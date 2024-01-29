@@ -2,11 +2,11 @@
     <section class="jacket">
         <div class="jacket_info">
             <h2>Jacket</h2>
-            <ul class="jacket_categories">
+            <!-- <ul class="jacket_categories">
                 <li class="jacket_category">Men</li>
                 <li class="jacket_category">Women</li>
                 <li class="jacket_category">Kids</li>
-            </ul>
+            </ul> -->
         </div>
         <div class="jacket_galery" ref="slider">
             <SectionsCardProducts category="jackets"></SectionsCardProducts>
@@ -65,7 +65,7 @@ onMounted(() => {
     padding: 4.375rem 0.625rem 1.875rem 1.5625rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.875rem;
+    gap: 3.5rem;
     align-self: stretch;
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
     overflow: hidden;
@@ -93,7 +93,7 @@ onMounted(() => {
     &_galery {
         display: flex;
         align-items: flex-start;
-        gap: 1.25rem;
+        gap: 2.5rem;
     }
     &_contentbutton {
         display: flex;
@@ -130,6 +130,12 @@ onMounted(() => {
     }
     .jacket_categories {
         padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .jacket_galery {
+        gap: 1.5rem;
     }
 }
 </style>
