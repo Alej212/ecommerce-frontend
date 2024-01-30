@@ -1,6 +1,6 @@
 <template>
-    <div v-for="product in products" :key="product.custom_id" class="product" @mouseover="hoveredProduct = product.custom_id" @mouseleave="hoveredProduct = null">
-        <img @click="navigateToProduct(product.type_product, product.custom_id)" :src="product.image" alt="Product image" class="product_img">
+    <div @click="navigateToProduct(product.type_product, product.custom_id)" v-for="product in products" :key="product.custom_id" class="product" @mouseover="hoveredProduct = product.custom_id" @mouseleave="hoveredProduct = null">
+        <img :src="product.image" alt="Product image" class="product_img">
         <div class="product_info">
             <div class="product_contentinfo">
                 <p class="product_title">{{ product.title }}</p>
@@ -80,7 +80,6 @@ onMounted(async () => {
     border-radius: 0.3125rem;
     background: #FFF;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.05);
-    display: flex;
 
     &_img {
         height: 13rem;
@@ -93,7 +92,6 @@ onMounted(async () => {
         align-items: flex-start;
         gap: 0.625rem;
         align-self: stretch;
-        display: flex;
     }
     &_contentinfo {
         display: flex;
@@ -133,28 +131,6 @@ onMounted(async () => {
 }
 
 @media screen and (max-width: 800px) {
-.add_bag {
-    position: absolute;
-    background-color: hsl(152, 74%, 7%);
-    padding: .8rem .8rem;
-    top: -2rem;
-    right: -1rem;
-    z-index: 1;
-    border-radius: 7px;
-    cursor: default;
-}
-
-.add_bag:hover {
-    position: absolute;
-    background-color:  hsl(152, 74%, 15%);
-    padding: .8rem .8rem;
-    top: -2rem;
-    right: -1rem;
-    z-index: 1;
-    border-radius: 7px;
-    cursor: default;
-}
-
 .header_icon {
     height: 1.2rem;
     width: 1.2rem;

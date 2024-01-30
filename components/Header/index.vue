@@ -1,6 +1,11 @@
 <template>
     <nav class="header" :class="{ 'header--activate': isActive }">
-        <icon @click="toggleActive" name="mdi:shop" class="header_iconone"></icon>
+        <div class="header_contenticons">
+            <icon @click="toggleActive" name="mingcute:menu-fill" class="header_iconmenu"></icon>
+            <NuxtLink to="/payment">
+                <icon name="fluent:payment-32-filled" class="header_iconpayment"></icon>
+            </NuxtLink>
+        </div>
         <ul class="header_ul" :class="{ 'header_ul--activate': isActive }">
             <li class="header_li" @click="isActive = false">
                 <NuxtLink to="/">Home</NuxtLink>
@@ -40,7 +45,7 @@ const store = useProductStore()
 
 onMounted(async () => {
     store.loadBag()
-    bag.value = store.bag
+    bag.value = store.$state.bag
 })
 
 let isActive = ref(false)
@@ -63,11 +68,18 @@ const toggleActive = () => {
     z-index: 2;
     top: 0;
 
-    &_iconone {
+    &_contenticons {
+        margin-left: 1.25rem;
+    }
+    &_iconmenu {
         width: 1.875rem;
         height: 1.875rem;
-        margin-left: 1.25rem;
-        color: #081413;
+        display: none;
+    }
+    &_iconpayment {
+        width: 1.875rem;
+        height: 1.875rem;
+        color: #fff;
     }
     &_icon {
         width: 1.875rem;
@@ -129,11 +141,11 @@ const toggleActive = () => {
         align-items: center;
         gap: 4rem;
     }
-    .header_iconone {
+    .header_iconmenu {
         width: 1.875rem;
         height: 1.875rem;
-        margin-left: 1.25rem;
         color: #fff;
+        display: block;
     }
 }
 </style>

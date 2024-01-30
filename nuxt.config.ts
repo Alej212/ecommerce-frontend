@@ -1,7 +1,6 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ['~/assets/sass/_default.scss'],
+  css: ['~/assets/sass/_default.scss', 'primevue/resources/themes/mdc-dark-deeppurple/theme.css'],
   vite: {
     css: {
       preprocessorOptions: {
@@ -11,5 +10,22 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: ['nuxt-icon', 'nuxt-swiper', '@pinia/nuxt'],
+  modules: [
+    'nuxt-icon', 
+    'nuxt-swiper', 
+    '@pinia/nuxt',
+    '@vite-pwa/nuxt',
+    '@hypernym/nuxt-anime', 
+    'nuxt-primevue',
+    '@nuxtjs/tailwindcss',
+  ],
+  primevue: {
+    usePrimeVue: true,
+    unstyled: true,
+    ripple: true,
+    inputStyle: 'filled',
+    components: {
+      include: '*',
+    },
+  },
 })

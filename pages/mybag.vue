@@ -66,7 +66,7 @@ onMounted(() => {
             flex-flow: column nowrap;
             gap: 1rem;
         }
-        &_contentinfo {}
+//        &_contentinfo {}
         &_title {
             color: #000;
             font-family: 'InterBold';
@@ -76,7 +76,7 @@ onMounted(() => {
             line-height: normal;
             align-self: stretch;
         }
-        &_category {}
+//        &_category {}
         &_price {
             color: #000;
             font-family: 'InterBold';
