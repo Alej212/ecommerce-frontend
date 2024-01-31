@@ -50,7 +50,6 @@
         </div> -->
         <div class="routeproducts_products">
             <div class="routeproducts_productsgalery">
-                <!-- Muestra solo los productos que coinciden con el género seleccionado -->
                 <SectionsCardProducts :products="filteredProducts" :category="contentType"></SectionsCardProducts>
             </div>
         </div>
@@ -59,7 +58,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import {ref, computed, watch} from 'vue'
+import {ref, computed, watch, onMounted} from 'vue'
 import { useProductStore } from '~/stores/useProductStore'
 
 const route = useRoute()
@@ -93,17 +92,19 @@ let filteredProducts = computed(() => {
     return products.value.filter(product => product.gender === selectedGender.value)
 })
 
-if (route.path === '/products-shoes') {
-contentType.value = 'shoes'
-} else if (route.path === '/products-sweaters') {
-contentType.value = 'sweaters'
-} else if (route.path === '/products-jackets') {
-contentType.value = 'jackets'
-} else if (route.path === '/products-pants') {
-contentType.value = 'pants'
-}
-
+onMounted(() => {
+    if (route.path === '/products-shoes') {
+        contentType.value = 'shoes'
+    } else if (route.path === '/products-sweaters') {
+        contentType.value = 'sweaters'
+    } else if (route.path === '/products-jackets') {
+        contentType.value = 'jackets'
+    } else if (route.path === '/products-pants') {
+        contentType.value = 'pants'
+    }
+})
 </script>
+
 
 <style scoped lang="scss">
 .routeproducts {

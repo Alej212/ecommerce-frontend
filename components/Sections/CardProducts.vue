@@ -12,20 +12,18 @@
 </template>
 
 
-
 <script setup>
 import { useProductStore } from '~/stores/useProductStore'
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 
+const router = useRouter()
+const store = useProductStore()
+
 const navigateToProduct = (type_product, custom_id) => {
   router.push(`/products-${type_product}/${custom_id}`)
 }
-
-const route = useRoute()
-const router = useRouter()
-const store = useProductStore()
 
 let hoveredProduct = ref(null)
 
@@ -35,11 +33,14 @@ const jackets = ref([])
 const pants = ref([])
 const products = ref([])
 
-
 const props = defineProps({
-    category: String
+    category: String,
+    limit: {
+      type: Boolean,
+      default: false
+    },
+    products: Array,
 })
-
 
 onMounted(async () => {
     await store.fetchShoes()
@@ -53,16 +54,16 @@ onMounted(async () => {
 
     switch (props.category) {
       case 'shoes':
-        products.value = shoes.value
+        products.value = props.limit ? shoes.value.slice(0, 15) : shoes.value
         break
       case 'sweaters':
-        products.value = sweaters.value
+        products.value = props.limit ? sweaters.value.slice(0, 15) : sweaters.value
         break
       case 'jackets':
-        products.value = jackets.value
+        products.value = props.limit ? jackets.value.slice(0, 15) : jackets.value
         break
       case 'pants':
-        products.value = pants.value
+        products.value = props.limit ? pants.value.slice(0, 15) : pants.value
         break
     }
 })
@@ -70,7 +71,6 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 .product {
-    position: relative;
     display: flex;
     width: 13rem;
     padding: 0.625rem;

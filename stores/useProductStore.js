@@ -9,6 +9,7 @@ export const useProductStore = defineStore('products', {
     pants: [],
     productDetail: {},
     bag: [],
+    ProductParameters: [],
   }),
   actions: {
     async fetchShoes() {
@@ -49,6 +50,14 @@ export const useProductStore = defineStore('products', {
         this.productDetail = response.data
       } catch (error) {
         console.error(`Error fetching ${type}:`, error)
+      }
+    },
+    async fetchProductParameters(parameter, product) {
+      try {
+          const response = await axios.get(`https://ecommerce-backend-django.onrender.com/products/${product}/?genre=${parameter}`)
+          this.ProductParameters = response.data
+      } catch (err) {
+          console.log(`error: ${err}`)
       }
     },
     addToBag(product) {

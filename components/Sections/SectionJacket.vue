@@ -1,19 +1,30 @@
 <template>
     <section class="jacket">
         <div class="jacket_info">
-            <h2>Jacket</h2>
-            <!-- <ul class="jacket_categories">
-                <li class="jacket_category">Men</li>
-                <li class="jacket_category">Women</li>
-                <li class="jacket_category">Kids</li>
-            </ul> -->
+            <h2>Jackets</h2>
+            <ul class="jacket_categories">
+                <li @click="clickHandler('All')" class="jacket_category">All</li>
+                <li @click="clickHandler('Hombre')" class="jacket_category">Men</li>
+                <li @click="clickHandler('Mujer')" class="jacket_category">Women</li>
+                <li @click="clickHandler('Niña')" class="jacket_category">Girls</li>
+            </ul>
         </div>
-        <div class="jacket_galery" ref="slider">
-            <SectionsCardProducts category="jackets"></SectionsCardProducts>
+        <div class="jacket_galery">
+            <SectionsCardProducts v-if="selectedCategory === 'All'" :limit="true" category="jackets"></SectionsCardProducts>
+            <div v-else @click="navigateToProduct(product.type_product, product.custom_id)" v-for="product in products" :key="product.custom_id" class="product" @mouseover="hoveredProduct = product.custom_id" @mouseleave="hoveredProduct = null">
+                <img :src="product.image" alt="Product image" class="product_img">
+                <div class="product_info">
+                    <div class="product_contentinfo">
+                        <p class="product_title">{{ product.title }}</p>
+                        <p class="product_category">{{ product.type_product }}</p>
+                    </div>
+                    <p class="product_price">${{ product.price }}</p>
+                </div>
+            </div>
         </div>
         <div class="jacket_contentbutton">
             <div class="jacket_button">
-                <NuxtLink to="products-jackets">
+                <NuxtLink to="/products-jackets">
                     <p class="jacket_showmore">Show more</p>
                 </NuxtLink>
             </div>
@@ -22,41 +33,27 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useProductStore } from '~/stores/useProductStore.js'
+import { useRouter } from 'vue-router'
 
-let slider = ref(null)
-let isDown = false
-let startX
-let scrollLeft
+const store = useProductStore()
+const selectedCategory = ref('All')
+const products = ref([])
+let hoveredProduct = ref(null)
+const router = useRouter()
 
-onMounted(() => {
-  const sliderElement = slider.value
+const navigateToProduct = (type_product, custom_id) => {
+  router.push(`/products-${type_product}/${custom_id}`)
+}
 
-  sliderElement.addEventListener('mousedown', (e) => {
-    isDown = true
-    sliderElement.classList.add('active')
-    startX = e.pageX - sliderElement.offsetLeft
-    scrollLeft = sliderElement.scrollLeft
-  })
-
-  sliderElement.addEventListener('mouseleave', () => {
-    isDown = false
-    sliderElement.classList.remove('active')
-  })
-
-  sliderElement.addEventListener('mouseup', () => {
-    isDown = false
-    sliderElement.classList.remove('active')
-  })
-
-  sliderElement.addEventListener('mousemove', (e) => {
-    if (!isDown) return
-    e.preventDefault()
-    const x = e.pageX - sliderElement.offsetLeft
-    const walk = (x - startX) * 3
-    sliderElement.scrollLeft = scrollLeft - walk
-  })
-})
+const clickHandler = async (parameter) => {
+    selectedCategory.value = parameter
+    if (parameter !== 'All') {
+        await store.fetchProductParameters(parameter, 'jackets')
+        products.value = store.ProductParameters.slice(0, 15) // Aquí limitamos la cantidad de productos a 15
+    }
+}
 </script>
 
 <style scoped lang="scss">
@@ -89,11 +86,16 @@ onMounted(() => {
         align-items: flex-start;
         gap: 0.625rem;
         background-color: #000;
+        user-select: none;
     }
     &_galery {
         display: flex;
         align-items: flex-start;
         gap: 1.5rem;
+        transition: transform 15s linear;
+    }
+    &_galery:hover {
+        transform: translateX(-65%);
     }
     &_contentbutton {
         display: flex;
@@ -138,5 +140,105 @@ onMounted(() => {
     .jacket_galery {
         gap: 1.5rem;
     }
+}
+
+.product {
+    display: flex;
+    width: 13rem;
+    padding: 0.625rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.875rem;
+    border-radius: 0.3125rem;
+    background: #FFF;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.05);
+
+    &_img {
+        height: 13rem;
+        width: 100%;
+    }
+    &_info {
+        display: flex;
+        padding-top: 0.3125rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.625rem;
+        align-self: stretch;
+    }
+    &_contentinfo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3125rem;
+        align-self: stretch;
+    }
+    &_title {
+        color: #000;
+        font-family: 'InterBold';
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        align-self: stretch;
+    }
+    &_category {
+        color: #000;
+        font-family: 'InterLight';
+        font-size: 0.900rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
+    &_price {
+        color: #000;
+        font-family: 'InterBold';
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+}
+.product:hover {
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 800px) {
+.header_icon {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.product {
+    width: 11rem;
+
+    &_img {
+        height: 9rem;
+    }
+    &_title {
+        color: #000;
+        font-family: 'InterBold';
+        font-size: .9rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        align-self: stretch;
+    }
+    &_category {
+        color: #000;
+        font-family: 'InterLight';
+        font-size: .8rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
+    &_price {
+        color: #000;
+        font-family: 'InterBold';
+        font-size: .9rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+}
+
 }
 </style>
