@@ -1,5 +1,5 @@
 <template>
-    <div class="p-8 pt-40 sm:pl-20 sm:pr-20 md:pl-40 md:pr-40 flex flex-col items-center gap-12 w-full">
+    <div class="p-8 pt-40 sm:pl-10 sm:pr-10 md:pl-20 md:pr-20 xl:pl-40 xl:pr-40 flex flex-col items-center gap-12 w-full">
         <div class="w-full">
             <ul class=" list-none border-round flex flex-col gap-4" @hide="selectedId = null">
             <li
@@ -36,8 +36,9 @@
                     <InputText id="username" class="text-black bg-slate-100 p-1" v-model="value" aria-describedby="username-help" />
                 </div>
             </div>
-            <div class="flex justify-center gap-10 items-center">
-                <div class="bg-rose-400 text-black pt-2 pb-2 pl-6 pr-6 rounded flex flex-col items-center">
+            <div class="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-10 items-center">
+                <div class="flex gap-5 items-center">
+                    <div class="bg-rose-400 text-black pt-2 pb-2 pl-6 pr-6 rounded flex flex-col items-center">
                     <label for="username" class="font-bold">Amount</label>
                     <div class="font-bold flex gap-2">
                         <icon name="tdesign:money" color="#000" size="1.5rem"></icon>
@@ -52,12 +53,15 @@
                         <p class="">{{ discount }}</p>
                     </div>
                 </div>
-                <span class="font-bold">=</span>
-                <div class="bg-teal-500 text-black pt-2 pb-2 pl-6 pr-6 rounded flex flex-col items-center">
-                    <label for="username" class="font-bold">Total amount</label>
-                    <div class="font-bold flex gap-2">
-                        <icon name="fluent:money-16-regular" color="#000" size="1.5rem"></icon>
-                        <p class="">{{ total - discount }}</p>
+                </div>
+                <div class="flex gap-8 items-center">
+                    <span class="font-bold hidden sm:block">=</span>
+                    <div class="bg-teal-500 text-black pt-2 pb-2 pl-6 pr-6 rounded flex flex-col items-center">
+                        <label for="username" class="font-bold">Total amount</label>
+                        <div class="font-bold flex gap-2">
+                            <icon name="fluent:money-16-regular" color="#000" size="1.5rem"></icon>
+                            <p class="">{{ total - discount }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
