@@ -72,7 +72,7 @@ onMounted(async () => {
 .product {
     position: relative;
     display: flex;
-    width: 11rem;
+    width: 13rem;
     padding: 0.625rem;
     flex-direction: column;
     align-items: flex-start;
@@ -136,7 +136,7 @@ onMounted(async () => {
     width: 1.2rem;
 }
 .product {
-    width: 8rem;
+    width: 11rem;
 
     &_img {
         height: 9rem;

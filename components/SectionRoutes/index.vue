@@ -170,7 +170,7 @@ contentType.value = 'pants'
         justify-content: center;
         align-items: flex-start;
         align-content: flex-start;
-        gap: 2.25rem;
+        gap: 1.5rem;
         align-self: stretch;
         flex-wrap: wrap;
         margin-top: 3rem;

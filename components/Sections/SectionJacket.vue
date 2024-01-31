@@ -93,7 +93,7 @@ onMounted(() => {
     &_galery {
         display: flex;
         align-items: flex-start;
-        gap: 2.5rem;
+        gap: 1.5rem;
     }
     &_contentbutton {
         display: flex;
