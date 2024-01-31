@@ -79,6 +79,7 @@
         font-style: normal;
         font-weight: 800;
         line-height: normal;
+        margin-right: 2rem;
     }
     &_icon {
         width: 1.875rem;

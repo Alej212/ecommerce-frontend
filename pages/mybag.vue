@@ -53,7 +53,7 @@ onMounted(() => {
 
     .product {
         background-color: #fff;
-        width: 12rem;
+        width: 16rem;
         padding: 1rem;
         border-radius: 5px;
 
@@ -64,9 +64,14 @@ onMounted(() => {
         &_info {
             display: flex;
             flex-flow: column nowrap;
-            gap: 1rem;
+            gap: .5rem;
         }
-//        &_contentinfo {}
+        &_contentinfo {
+          display: flex;
+          flex-flow: column wrap;
+          margin-top: 1rem;
+          gap: .5rem;
+        }
         &_title {
             color: #000;
             font-family: 'InterBold';
@@ -76,7 +81,9 @@ onMounted(() => {
             line-height: normal;
             align-self: stretch;
         }
-//        &_category {}
+        &_category {
+          color: #000;
+        }
         &_price {
             color: #000;
             font-family: 'InterBold';
