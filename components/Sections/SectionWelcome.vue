@@ -37,4 +37,15 @@ img {
     height: 100%;
     object-fit: cover;
 }
+
+@media screen and (max-width: 750px) {
+  .welcome {
+    height: 30rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .welcome {
+    height: 25rem;
+  }
+}
 </style>

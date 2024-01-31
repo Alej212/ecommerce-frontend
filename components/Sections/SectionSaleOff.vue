@@ -26,12 +26,28 @@
     }
     &_img {
         display: flex;
-        height: 32.5625rem;
+        height: 32rem;
         padding: 0.625rem;
         align-items: flex-start;
         gap: 0.625rem;
         align-self: stretch;
-        background: url('../../assets/images/shoessale.png'), lightgray 50% / cover no-repeat;
+        background-image: url('../../assets/images/shoessale.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
+}
+@media screen and (max-width: 750px) {
+    .saleoff {
+        padding: 1.8rem 2rem;
+    }
+  .saleoff_img {
+    height: 25rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .saleoff_img {
+    height: 20rem;
+  }
 }
 </style>

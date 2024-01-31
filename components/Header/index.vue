@@ -68,9 +68,6 @@ const toggleActive = () => {
     z-index: 2;
     top: 0;
 
-    &_contenticons {
-        margin-left: 1.25rem;
-    }
     &_iconmenu {
         width: 1.875rem;
         height: 1.875rem;
@@ -95,8 +92,9 @@ const toggleActive = () => {
     &_contenticons {
         display: flex;
         align-items: center;
-        gap: 0.625rem;
+        gap: 1rem;
         margin-right: 1.25rem;
+        margin-left: 1.25rem;
     }
     &_contentbag {
         display: flex;
