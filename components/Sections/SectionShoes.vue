@@ -69,7 +69,7 @@ const clickHandler = async (parameter) => {
     padding: 4.375rem 0.625rem 1.875rem 1.5625rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 3.5rem;
+    gap: 2rem;
     align-self: stretch;
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
@@ -86,7 +86,7 @@ const clickHandler = async (parameter) => {
         display: flex;
         padding: 0.625rem;
         align-items: flex-start;
-        gap: 0.625rem;
+        gap: .8rem;
     }
     &_category {
         display: flex;
@@ -95,6 +95,10 @@ const clickHandler = async (parameter) => {
         gap: 0.625rem;
         background-color: #000;
         user-select: none;
+        border-radius: 2px;
+    }
+    &_category:hover {
+        background-color: #2b7a74;
     }
     &_galery {
         display: flex;
@@ -126,6 +130,9 @@ const clickHandler = async (parameter) => {
         font-weight: 800;
         line-height: normal;
         margin-right: 2rem;
+    }
+    &_showmore:hover {
+        color: #18423f;
     }
     &_icon {
         width: 1.875rem;

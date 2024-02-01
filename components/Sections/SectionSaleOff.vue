@@ -26,7 +26,7 @@
     }
     &_img {
         display: flex;
-        height: 32rem;
+        height: 28rem;
         padding: 0.625rem;
         align-items: flex-start;
         gap: 0.625rem;
@@ -42,12 +42,12 @@
         padding: 1.8rem 2rem;
     }
   .saleoff_img {
-    height: 25rem;
+    height: 20rem;
   }
 }
 @media screen and (max-width: 500px) {
   .saleoff_img {
-    height: 20rem;
+    height: 12rem;
   }
 }
 </style>

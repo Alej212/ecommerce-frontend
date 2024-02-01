@@ -26,7 +26,7 @@
         <div class="header_contenticons">
             <div class="header_contentbag">
                 <NuxtLink to="/mybag">
-                    <icon class="header_icon" color="#fff" name="solar:cart-bold"></icon>
+                    <icon class="header_icon" name="solar:cart-bold"></icon>
                 </NuxtLink>
                 <div class="header_count">
                     <li class="header_li">{{ bag.length }}</li>
@@ -73,14 +73,24 @@ const toggleActive = () => {
         height: 1.875rem;
         display: none;
     }
+    &_iconmenu:hover {
+        color: #50dbd0;
+    }
     &_iconpayment {
         width: 1.875rem;
         height: 1.875rem;
         color: #fff;
     }
+    &_iconpayment:hover {
+        color: #50dbd0;
+    }
     &_icon {
         width: 1.875rem;
         height: 1.875rem;
+        color: #fff;
+    }
+    &_icon:hover {
+        color: #50dbd0;
     }
     &_ul {
         display: flex;
@@ -88,6 +98,9 @@ const toggleActive = () => {
         justify-content: center;
         align-items: center;
         gap: 1.875rem;
+    }
+    &_li:hover {
+        color: #50dbd0;
     }
     &_contenticons {
         display: flex;

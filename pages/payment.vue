@@ -25,15 +25,15 @@
             <div class="flex flex-col gap-4">
                 <div class="flex flex-col">
                     <label for="username" class="font-bold">Username</label>
-                    <InputText id="username" class="text-black bg-slate-100 p-1" v-model="value" aria-describedby="username-help" />
+                    <InputText id="username" placeholder="Your email" class="text-black bg-slate-100 pl-3 p-1" v-model="value" aria-describedby="username-help" />
                 </div>
                 <div class="flex flex-col">
                     <label for="username" class="font-bold">Password</label>
-                    <InputText id="username" class="text-black bg-slate-100 p-1" v-model="value" aria-describedby="username-help" />
+                    <InputText id="password" placeholder="Your password" class="text-black bg-slate-100 pl-3 p-1" v-model="value" aria-describedby="username-help" />
                 </div>
                 <div class="flex flex-col">
-                    <label for="username" class="font-bold">Email</label>
-                    <InputText id="username" class="text-black bg-slate-100 p-1" v-model="value" aria-describedby="username-help" />
+                    <label for="username" class="font-bold">Paypal</label>
+                    <InputText id="paypal" type="password" placeholder="Your paypal email" class="text-black bg-slate-100 pl-3 p-1" v-model="value" aria-describedby="username-help" />
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-10 items-center">
@@ -91,4 +91,5 @@ const discount = 20;
 const total = computed(() => {
   return products.value.reduce((sum, product) => sum + Number(product.price), 0)
 })
+
 </script>
