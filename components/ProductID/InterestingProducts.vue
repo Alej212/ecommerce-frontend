@@ -51,7 +51,7 @@ const products = ref(product)
         display: flex;
         padding: 0.625rem;
         align-items: flex-start;
-        gap: 0.625rem;
+        gap: .8rem;
     }
     &_category {
         display: flex;
@@ -59,6 +59,11 @@ const products = ref(product)
         align-items: flex-start;
         gap: 0.625rem;
         background-color: #000;
+        user-select: none;
+        border-radius: 2px;
+    }
+    &_category:hover {
+        background-color: #2b7a74;
     }
     &_galery {
         display: flex;

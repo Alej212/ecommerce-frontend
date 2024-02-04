@@ -1,7 +1,10 @@
 <template>
     <section class="shoes">
         <div class="shoes_info">
-            <h2>Shoes</h2>
+            <div class="shoes_contenttitle">
+                <h2>Shoes</h2>
+                <!-- <Icon name="fluent-emoji-high-contrast:running-shoe" size="2rem" color="black"></Icon> -->
+            </div>
             <ul class="shoes_categories">
                 <li @click="clickHandler('All')" class="shoes_category">All</li>
                 <li @click="clickHandler('Hombre')" class="shoes_category">Men</li>
@@ -75,6 +78,11 @@ const clickHandler = async (parameter) => {
     border-bottom: 1px solid rgba(0, 0, 0, 0.20);
     overflow: hidden;
 
+    // &_contenttitle {
+    //     display: flex;
+    //     align-items: center;
+    //     gap: 1rem;
+    // }
     &_info {
         display: flex;
         padding-right: 1.875rem;
