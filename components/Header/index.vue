@@ -151,6 +151,11 @@ const toggleActive = () => {
         justify-content: center;
         align-items: center;
         gap: 4rem;
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
     }
     .header_iconmenu {
         width: 1.875rem;
