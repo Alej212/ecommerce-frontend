@@ -83,7 +83,6 @@ li:hover {
     flex-flow: column wrap;
     gap: 2rem;
     padding: 1rem 0;
-
 }
 .content-social-title {
     font-size: 1.5rem;

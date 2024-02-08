@@ -6,7 +6,7 @@
                 <li @click="clickHandler('All')" class="sweter_category">All</li>
                 <li @click="clickHandler('Hombre')" class="sweter_category">Men</li>
                 <li @click="clickHandler('Mujer')" class="sweter_category">Women</li>
-                <li @click="clickHandler('Niñas')" class="sweter_category">Grils</li>
+                <li @click="clickHandler('Niñas')" class="sweter_category">Girls</li>
             </ul>
         </div>
         <div class="sweter_galery">

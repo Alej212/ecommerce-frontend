@@ -90,7 +90,7 @@ img {
     height: 25rem;
   }
   .message {
-    font-size: 30px;
+    font-size: 40px;
   }
 }
 </style>

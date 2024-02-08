@@ -9,7 +9,7 @@
                 <li @click="clickHandler('All')" class="shoes_category">All</li>
                 <li @click="clickHandler('Hombre')" class="shoes_category">Men</li>
                 <li @click="clickHandler('Mujer')" class="shoes_category">Women</li>
-                <li @click="clickHandler('Niñas')" class="shoes_category">Grils</li>
+                <li @click="clickHandler('Niñas')" class="shoes_category">Girls</li>
             </ul>
         </div>
         <div class="shoes_galery">
