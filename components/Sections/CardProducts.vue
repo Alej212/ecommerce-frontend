@@ -171,6 +171,7 @@ onMounted(async () => {
 @media screen and (max-width: 550px) {
     .product {
     width: 8rem;
+    gap: .3rem;
 
     &_img {
         height: 7rem;

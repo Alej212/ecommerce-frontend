@@ -89,11 +89,13 @@ const clickHandler = async (parameter) => {
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
+        gap: 1rem;
     }
     &_categories {
         display: flex;
+        flex-wrap: wrap;
         padding: 0.625rem;
-        align-items: flex-start;
+        justify-content: flex-end;
         gap: .8rem;
     }
     &_category {
