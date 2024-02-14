@@ -87,7 +87,7 @@ const clickHandler = async (parameter) => {
         display: flex;
         padding-right: 1.875rem;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         align-self: stretch;
     }
     &_categories {
@@ -150,11 +150,20 @@ const clickHandler = async (parameter) => {
 
 @media screen and (max-width: 550px) {
     .shoes_info {
-        justify-content: none;
-        flex-flow: column nowrap;
+        padding-right: 0;
     }
     .shoes_categories {
         padding-left: 0;
+    }
+    .shoes_category {
+        font-size: 12px;
+    }
+
+    .shoes_contenttitle h2 {
+        font-size: 25px;
+    }
+    .shoes_showmore {
+        font-size: .9rem;
     }
 }
 
