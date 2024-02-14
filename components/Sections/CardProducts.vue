@@ -167,6 +167,39 @@ onMounted(async () => {
         line-height: normal;
     }
 }
+}
+@media screen and (max-width: 550px) {
+    .product {
+    width: 8rem;
 
+    &_img {
+        height: 7rem;
+    }
+    &_title {
+        color: #000;
+        font-family: 'InterBold';
+        font-size: .7rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        align-self: stretch;
+    }
+    &_category {
+        color: #000;
+        font-family: 'InterLight';
+        font-size: .8rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
+    &_price {
+        color: #000;
+        font-family: 'InterBold';
+        font-size: .8rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+}
 }
 </style>
